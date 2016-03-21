@@ -1,0 +1,45 @@
+<include file="Public:header" />
+<section>
+    <div style="border-bottom:1px solid #eee;height:30px;">
+      用户详情
+    </div>
+    <div style="margin-top:10px;">
+        <form id="user-save" action="{:U('User/save')}" method="post" class="form-horizontal">
+            <div class="form-group form-inline">
+                <div class="col-md-8">
+                    <span>
+                        用户名:
+                    </span>
+                    <input type="text" id="name" name="name" class="form-control" 
+                    style="width:50%;" value="{$user['name']}" placeholder="添加用户名">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary" id="save">保存</button>
+                </div>
+            </div> 
+        </form>  
+    </div>
+
+    <script type="text/javascript">
+       /* $('#user-save').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "{:U('User/save')}",
+                data: $("#talk-add").serialize(),
+                success: function(data){
+                    if (data.status == 0) {
+                        alert(data.info);
+                        return  false;
+                    } else {
+                        window.location.href = data.url;
+                    }
+                }
+            });
+        });*/
+    </script>
+</section>
+

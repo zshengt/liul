@@ -1,0 +1,35 @@
+<div class="panel panel-default left">
+  <div class="panel-heading">
+    话题
+  </div>
+  <div ms-controller="artilist" class="panel-body">
+    <div class="row">
+      <div class="col-xs-12">
+        <!-- <div class="input-group">
+          <input type="text" class="form-control" placeholder="查询相关文章">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">查询</button>
+          </span>
+        </div> --><!-- /input-group -->
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    <div class="calendar">
+      <div class="dateTitle"></div>
+      <div>
+        <table>
+          <tr class="dtr"><td class="dtd">日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td></tr>
+          <tbody class="tb">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ul>
+      <volist  name="secondcategorys" id="cate" >
+        <li class="list-group-item">
+          <a class="aitem <?php if($cate['id']==$cid) echo 'active';?>" href="{:U('Article/query', array('cid'=>$cate['id']))}">{$cate.name}</a><span class="badge">{$cate.amount}</span>
+        </li>
+      </volist>
+    </ul>
+  </div>
+</div>
+

@@ -1,0 +1,22 @@
+<include file="Public:header" />
+<section>
+    <ul class="nav nav-tabs">
+      <li role="presentation" class="active"><a href="#">话题列表</a></li>
+      <li role="presentation"><a href="{:U('Category/add')}">话题添加</a></li>
+    </ul>
+    <br/>
+    <table class="table">
+        <tbody>
+            <tr><th>ID</th><th>name</th><th>amount</th><th>cid</th><th>operation</th></tr>
+        </tbody>
+        <foreach name="categorys" item="category">
+            <tr>
+                <td>{$category.id}</td><td>{$category.name}</td><td>{$category.amount}</td><td>{$category.cid}</td><td><a href="{:U('Category/edit', array('id'=>$category['id']))}"><img style="width:20px;height:20px;margin-top:-5px;" src="__PUBLIC__/img/edit.png"/></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{:U('category/delete', array('id'=>$category['id']))}"><img style="width:18px;height:18px;margin-top:-5px;" src="__PUBLIC__/img/del.png"/></a>
+                </td>
+            </tr>
+        </foreach>
+    </table> 
+</section>
+

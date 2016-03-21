@@ -1,0 +1,25 @@
+<include file="Public:header" />
+<section>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <th>title</th>
+                <th>cid</th>
+                <th>like</th>
+                <th>updatetime</th>
+                <th>createtime</th>
+                <th>operation</th>
+            </tr>
+        </tbody>
+        <foreach name="articles['list']" item="article">
+            <tr>
+                <td>{$article.id}</td><td>{$article.title}</td><td>{$article.cid}</td><td>{$article.like}</td><td><?php echo friendlyDate($article['updatetime']);?></td><td><?php echo friendlyDate($article['createtime']);?></td><td><a href="{:U('Article/edit', array('id'=>$article['id']))}"><img style="width:20px;height:20px;margin-top:-5px;" src="__PUBLIC__/img/edit.png"/></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{:U('article/delete', array('id'=>$article['id']))}"><img style="width:18px;height:18px;margin-top:-5px;" src="__PUBLIC__/img/del.png"/></a>
+                </td>
+            </tr>
+        </foreach>
+    </table> 
+</section>
+

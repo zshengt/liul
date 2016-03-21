@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-cmn-Hans">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/mycss.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+
+    <title>众生堂</title>
+</head>
+<body style="background-color:#EEE;">
+    <div class="catalog">
+        <div class="logo">
+            <img src="__PUBLIC__{$user.headimg}">
+            <span>{$user.name}
+            <a href="{:U('Index/index')}" style="font-size:16px;">众生堂首页</a>  
+            </span>        
+        </div>
+        <div class="area">  
+            <div style="float:right;width:350px;margin-right:135px;">
+                <div style="float:right;">
+                    |<a href="{:U('Admin/Public/login')}" style="font-size:16px;">登录</a>
+                    <br/>
+                    |<a href="{:U('Admin/Public/register')}" style="font-size:16px;">注册</a>
+                </div>
+                <ul class="nav nav-pills">
+                    <volist name="firstcategorys" id="vo">
+                        <li role="presentation" class='<if condition = "($cid eq $vo['id']) or ($secondcategorys[0]['cid'] eq $vo['id'])">active<else /></if>'><a href="{:U('Article/query', array('cid'=>$vo['id']))}">{$vo.name}</a></li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main">

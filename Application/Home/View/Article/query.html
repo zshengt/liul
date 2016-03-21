@@ -1,0 +1,41 @@
+<include file="Public:head" />
+<include file="Public:left" />
+<div class="panel panel-default right">
+  <div class="panel-body" style="width:100%; margin: auto 0px;">
+    <ul>
+      <volist  name="articles" id="art" >
+        <li class="artlist">
+          <a href="{:U('Article/get', array('id'=>$art['id']))}">{$art.title}</a>
+          <div style="float:right;margin-right:40px;">
+            <span class="time">{$art['createtime']|date='Y-m-d h:m:s',###}</span>
+            <span class="badge">{$art.like}</span>
+          </div>
+        </li>
+      </volist>
+    </ul> 
+    <nav>
+      <ul class="pagination pagearea">
+        <li class='<if condition="$page eq 1">disabled<else /></if>'>
+          <a href="{:U('Article/query', array('cid'=>$category['cid'], 'page'=>$page-1<1?1:$page-1))}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <for start="1" end="$totalpage+1">
+          <li class='<if condition="$page eq $i">active<else /></if>' >
+            <a href="{:U('Article/query', array('cid'=>$category['cid'], 'page'=>$i))}">
+              {$i}
+            </a>
+          </li>
+        </for>
+        <li class='<if condition="$page eq $totalpage">disabled<else /></if>' id="next">
+          <a href="{:U('Article/query', array('cid'=>$category['cid'], 'page'=>$page+1>$totalpage?$page:$page+1))}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <input class="page" id="page1" type="hidden" value="{$page}">
+    <input class="totalpage" id="totalpage1" type="hidden" value="{$totalpage}">
+  </div>
+</div>
+<include file="Public:tail" />

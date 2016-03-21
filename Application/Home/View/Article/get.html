@@ -1,0 +1,76 @@
+<include file="Public:head" />
+<include file="Public:left" />
+<div class="panel panel-default right">
+  <div class="panel-body" style="border-bottom: 1px solid #EAEAEA;">
+    <div class="panel-body title">
+        <span>{$art.title}</span>
+        <div class="info">
+            <span>{$art.createtime|date='Y-m-d h:m:s',###}</span>
+        </div>  
+    </div>
+    <div class="panel-body" >
+     {$art.content}
+    </div>
+    <div>
+      <span style="float:right;margin-right:20px;margin-bottom:20xpx;">
+        <a href="{:U('Article/query', array('cid'=>$cid))}">返回列表</a>
+      </span>
+    </div>
+    <div style="">
+      <ul>
+        <volist name="comments" id="comment">
+          <li class="media">
+            <a href="#" class="pull-left">
+               <img src="__PUBLIC__/{$comment.headimg}" class="talk-avatar middle">
+            </a>
+            <div class="media-body">                          
+                <h4 class="media-heading" style="margin-top:5px;">
+                    <span class="username"><a href="/index.php?m=user&amp;a=index&amp;uid=7">{$comment.name}</a></span>
+                    <small class="timeago" original-title="2015年12月10日 15:20:16">
+                      {$comment.createtime|friendlyDate=###}
+                    </small>
+                </h4>
+                <div class="content">
+                    {$comment.content}                                
+                </div>
+            </div>
+          </li>
+        </volist>
+      </ul>
+      <div style="margin-top:10px;margin-bottom:10px;">
+        <div class="comment">
+          <div class="form-group" style="width:auto;margin-right:30px;">
+            <textarea id="comment" class="form-control" name="content" rows="5"></textarea>
+          </div>
+          <input type="hidden" name="tid" value="{$art['id']}" id="aid">
+          <button type="submit" class="btn btn-primary" id="create">创建</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(function(){
+      $("#create").click(function(){
+        var content = $.trim($("#comment").val());
+        var aid = $("#aid").val();
+        if(content == ''){
+          alert("内容不能为空");
+          return false;
+        }
+        $.ajax({
+          url: "{:U('comment/add')}",
+          type: 'POST',
+          dataType: 'json',
+          data: {aid: aid, content: content},
+          success :function(data) {
+            if(data.status == 1){
+              window.location.href = "{:U('Article/get', array('id'=>$art['id']))}";
+            }else if(data.status == 0){
+              window.location.href = "{:U('Admin/Public/login')}";
+            }
+          }
+        });
+      });
+    })
+  </script>
+<include file="Public:tail" />

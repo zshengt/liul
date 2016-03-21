@@ -1,0 +1,68 @@
+<include file="Public:header" />
+<section>
+    <ul class="nav nav-tabs">
+      <li role="presentation"><a href="{:U('Category/query')}">话题列表</a></li>
+      <li role="presentation" class="active"><a href="#">话题添加</a></li>
+    </ul>
+    <br/>
+    <p style="font-weight:bold;">描述：如若下拉框选择空或未选择,则创建的目录名为一级目录;否则创建的目录为一级目录下的二级目录</p>
+    <form id="talk-add" action="" method="post" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-4">
+                <select name="cid" id="cid" class="form-control">
+                    <option value="0"></option>
+                    <volist name="categorys" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                <input type="text" id="title" name="title" class="form-control" value="{$category['name']}" placeholder="添加目录">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                <input  type="hidden" name="id"  value="{$category['id']}">
+                <button type="submit" class="btn btn-primary" id="create">创建</button>
+            </div>
+        </div> 
+    </form>   
+</section>
+<link href="__PUBLIC__/js/editor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script src="__PUBLIC__/js/editor/umeditor.config.js"></script>
+<script src="__PUBLIC__/js/editor/umeditor.min.js"></script>
+<script src="__PUBLIC__/js/editor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('#talk-add').on('submit', function(e) {
+            e.preventDefault();
+            var cid     =  $('#cid').val();
+            var title =  $.trim($('#title').val());
+            if (cid =='') {
+                alert('分类不能为空');
+                return false;
+            }
+            if (title == '') {
+                alert('目录名不能为空');
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "{:U('category/update')}",
+                data: $("#talk-add").serialize(),
+                success: function(data){
+                    if (data.status == 0) {
+                        alert(data.info);
+                        return  false;
+                    } else {
+                        window.location.href = data.url;
+                    }
+                }
+            });
+        });
+    });
+</script>

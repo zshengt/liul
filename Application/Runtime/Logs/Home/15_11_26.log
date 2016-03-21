@@ -1,0 +1,35 @@
+[ 2015-11-26T09:45:53+08:00 ] 127.0.0.1 /
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000443s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000588s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000731s ]
+NOTIC: [8] Undefined index: cid D:\xampp\htdocs\liul\Application\Home\Controller\IndexController.class.php 第 6 行.
+SQL: SHOW COLUMNS FROM `category` [ RunTime:0.0708s ]
+SQL: SHOW COLUMNS FROM `category` [ RunTime:0.0021s ]
+SQL: SELECT * FROM `category` WHERE `cid` = 1 ORDER BY amount DESC  [ RunTime:0.0342s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000107s ]
+NOTIC: [8] Undefined variable: articles D:\xampp\htdocs\liul\Application\Runtime\Cache\Home\d9f819b3b48479d96fea8a8f2f546a01.php 第 64 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\liul\Application\Runtime\Cache\Home\d9f819b3b48479d96fea8a8f2f546a01.php 第 70 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\liul\Application\Runtime\Cache\Home\d9f819b3b48479d96fea8a8f2f546a01.php 第 71 行.
+NOTIC: [8] Undefined variable: totalpage D:\xampp\htdocs\liul\Application\Runtime\Cache\Home\d9f819b3b48479d96fea8a8f2f546a01.php 第 75 行.
+NOTIC: [8] Undefined variable: totalpage D:\xampp\htdocs\liul\Application\Runtime\Cache\Home\d9f819b3b48479d96fea8a8f2f546a01.php 第 80 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\liul\Application\Runtime\Cache\Home\d9f819b3b48479d96fea8a8f2f546a01.php 第 80 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\liul\Application\Runtime\Cache\Home\d9f819b3b48479d96fea8a8f2f546a01.php 第 81 行.
+NOTIC: [8] Undefined variable: totalpage D:\xampp\htdocs\liul\Application\Runtime\Cache\Home\d9f819b3b48479d96fea8a8f2f546a01.php 第 81 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\liul\Application\Runtime\Cache\Home\d9f819b3b48479d96fea8a8f2f546a01.php 第 81 行.
+NOTIC: [8] Undefined variable: page D:\xampp\htdocs\liul\Application\Runtime\Cache\Home\d9f819b3b48479d96fea8a8f2f546a01.php 第 87 行.
+NOTIC: [8] Undefined variable: totalpage D:\xampp\htdocs\liul\Application\Runtime\Cache\Home\d9f819b3b48479d96fea8a8f2f546a01.php 第 88 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.060966s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.061034s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000485s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000524s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000654s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000700s ]
+

@@ -1,0 +1,83 @@
+<include file="Public:header" />
+<section>
+    <form id="talk-add" action="" method="post" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-4">
+                <select name="cid" id="cid" class="form-control">
+                    <option value="">选择分类</option>
+                    <volist name="category" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <input type="text" id="title" name="title" class="form-control" value="" placeholder="标题">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                <script type="text/plain" id="editor" style="width:660px;height:350px;"></script>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary" id="create">创建</button>
+            </div>
+        </div> 
+    </form>   
+</section>
+<link href="__PUBLIC__/js/editor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+<script src="__PUBLIC__/js/editor/umeditor.config.js"></script>
+<script src="__PUBLIC__/js/editor/umeditor.min.js"></script>
+<script src="__PUBLIC__/js/editor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var um = UM.getEditor('editor', {
+            toolbar: ['bold italic underline insertorderedlist insertunorderedlist  image '],
+            UEDITOR_HOME_URL: "__PUBLIC__/js/editor/",
+            imageUrl: "{:U('Article/upload')}",
+            imagePath: "__PUBLIC__/upload/attach/",
+
+            autoClearinitialContent: true,
+            wordCount: false,
+            elementPathEnabled: false,
+            autoFloatEnabled: false,
+
+            textarea: 'content'
+        });
+        um.setContent('{$article.content}');
+
+        $('#talk-add').on('submit', function(e) {
+            e.preventDefault();
+            var cid     =  $('#cid').val();
+            var title =  $.trim($('#title').val());
+            if (cid =='') {
+                alert('分类不能为空');
+                return false;
+            }
+            if (title == '') {
+                alert('标题不能为空');
+                return false;
+            }
+            if (um.hasContents() == false) {
+                alert('内容不能为空');
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "{:U('article/add')}",
+                data: $("#talk-add").serialize(),
+                success: function(data){
+                    if (data.status == 0) {
+                        alert(data.info);
+                        return  false;
+                    } else {
+                        window.location.href = data.url;
+                    }
+                }
+            });
+        });
+    });
+</script>
